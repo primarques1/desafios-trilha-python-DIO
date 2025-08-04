@@ -1,6 +1,3 @@
-import textwrap
-
-
 def menu():
     menu = """\n
     ================ MENU ================
@@ -12,7 +9,7 @@ def menu():
     [nu]\tNovo usuário
     [q]\tSair
     => """
-    return input(textwrap.dedent(menu))
+    return input(menu)
 
 
 def depositar(saldo, valor, extrato, /):
@@ -21,7 +18,7 @@ def depositar(saldo, valor, extrato, /):
         extrato += f"Depósito:\tR$ {valor:.2f}\n"
         print("\n=== Depósito realizado com sucesso! ===")
     else:
-        print("\n@@@ Operação falhou! O valor informado é inválido. @@@")
+        print("\n--- Operação falhou! O valor informado é inválido. ---")
 
     return saldo, extrato
 
@@ -32,13 +29,13 @@ def sacar(*, saldo, valor, extrato, limite, numero_saques, limite_saques):
     excedeu_saques = numero_saques >= limite_saques
 
     if excedeu_saldo:
-        print("\n@@@ Operação falhou! Você não tem saldo suficiente. @@@")
+        print("\n--- Operação falhou! Você não tem saldo suficiente. ---")
 
     elif excedeu_limite:
-        print("\n@@@ Operação falhou! O valor do saque excede o limite. @@@")
+        print("\n--- Operação falhou! O valor do saque excede o limite. ---")
 
     elif excedeu_saques:
-        print("\n@@@ Operação falhou! Número máximo de saques excedido. @@@")
+        print("\n--- Operação falhou! Número máximo de saques excedido. ---")
 
     elif valor > 0:
         saldo -= valor
@@ -47,7 +44,7 @@ def sacar(*, saldo, valor, extrato, limite, numero_saques, limite_saques):
         print("\n=== Saque realizado com sucesso! ===")
 
     else:
-        print("\n@@@ Operação falhou! O valor informado é inválido. @@@")
+        print("\n--- Operação falhou! O valor informado é inválido. ---")
 
     return saldo, extrato
 
@@ -89,7 +86,7 @@ def criar_conta(agencia, numero_conta, usuarios):
         print("\n=== Conta criada com sucesso! ===")
         return {"agencia": agencia, "numero_conta": numero_conta, "usuario": usuario}
 
-    print("\n@@@ Usuário não encontrado, fluxo de criação de conta encerrado! @@@")
+    print("\n--- Usuário não encontrado, criação de conta encerrada! ---")
 
 
 def listar_contas(contas):
@@ -158,3 +155,4 @@ def main():
 
 
 main()
+
